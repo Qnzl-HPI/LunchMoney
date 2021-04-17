@@ -45,9 +45,10 @@ async function dump(args) {
 
     const EXPORT_PATH = resolve(exportPath, filledExportFormat)
 
-    console.log("TOKEN:", token)
+    const startDate = dayjs().subtract(7, 'days').format('YYYY-MM-DD')
+    const endDate = dayjs().format('YYYY-MM-DD')
 
-    const transactionRes = await fetch('https://dev.lunchmoney.app/v1/transactions', {
+    const transactionRes = await fetch(`https://dev.lunchmoney.app/v1/transactions?start_date=${startDate}&end_date=${endDate}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
